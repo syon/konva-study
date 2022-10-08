@@ -1,5 +1,5 @@
 {
-  "name": "konva-study",
+  "name": "vite-starter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,14 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "konva": "^8.3.13"
+  },
   "devDependencies": {
     "vite": "^3.1.4"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }
