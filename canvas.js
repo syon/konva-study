@@ -1,4 +1,5 @@
 import Konva from 'konva'
+import { createCross } from './lib/Cross'
 
 export function draw() {
   const stage = new Konva.Stage({
@@ -10,23 +11,13 @@ export function draw() {
   const layer = new Konva.Layer()
   stage.add(layer)
 
-  const simpleText = new Konva.Text({
-    x: 120,
-    y: 70,
-    text: 'Simple Text',
-    fontSize: 30,
-    fontFamily: 'Calibri',
-    fill: 'gray',
-  })
-  layer.add(simpleText)
+  const cross1 = createCross({ x: 0, y: 0 })
+  const cross2 = createCross({ x: 100, y: 0 })
+  const cross3 = createCross({ x: 0, y: 100 })
+  const cross4 = createCross({ x: 100, y: 100 })
 
-  const rect1 = new Konva.Rect({
-    x: 60,
-    y: 60,
-    width: 50,
-    height: 50,
-    fill: 'red',
-    opacity: 0.5,
-  })
-  layer.add(rect1)
+  layer.add(cross1)
+  layer.add(cross2)
+  layer.add(cross3)
+  layer.add(cross4)
 }
