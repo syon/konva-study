@@ -6,18 +6,18 @@ export function draw() {
     container: 'app',
     width: window.innerWidth,
     height: window.innerHeight,
+    draggable: true,
   })
 
   const layer = new Konva.Layer()
   stage.add(layer)
 
-  const cross1 = createCross({ x: 0, y: 0 })
-  const cross2 = createCross({ x: 100, y: 0 })
-  const cross3 = createCross({ x: 0, y: 100 })
-  const cross4 = createCross({ x: 100, y: 100 })
-
-  layer.add(cross1)
-  layer.add(cross2)
-  layer.add(cross3)
-  layer.add(cross4)
+  for (let i = 0; i <= 10; i++) {
+    for (let j = 0; j <= 10; j++) {
+      const x = 0 + 100 * i
+      const y = 0 + 100 * j
+      const cross = createCross({ x, y })
+      layer.add(cross)
+    }
+  }
 }
