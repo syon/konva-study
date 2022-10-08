@@ -1,5 +1,5 @@
 import Konva from 'konva'
-import { createCross } from './lib/Cross'
+import { createCrossLayer } from './lib/CrossLayer'
 import { createCyanSquare } from './lib/CyanSquare'
 import { createConnector } from './lib/Connector'
 
@@ -11,17 +11,11 @@ export function draw() {
     draggable: true,
   })
 
+  const crossLayer = createCrossLayer()
+  stage.add(crossLayer)
+
   const layer = new Konva.Layer()
   stage.add(layer)
-
-  for (let i = 0; i <= 10; i++) {
-    for (let j = 0; j <= 10; j++) {
-      const x = 0 + 100 * i
-      const y = 0 + 100 * j
-      const cross = createCross({ x, y })
-      layer.add(cross)
-    }
-  }
 
   const rect1 = createCyanSquare({ x: 40, y: 40 })
   layer.add(rect1)
