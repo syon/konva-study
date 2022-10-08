@@ -1,5 +1,6 @@
 import Konva from 'konva'
 import { createCross } from './lib/Cross'
+import { createCyanSquare } from './lib/CyanSquare'
 
 export function draw() {
   const stage = new Konva.Stage({
@@ -20,4 +21,10 @@ export function draw() {
       layer.add(cross)
     }
   }
+
+  const rect1 = createCyanSquare({ x: 40, y: 40 })
+  layer.add(rect1)
+
+  const rect2 = createCyanSquare({ x: 250, y: 80 })
+  layer.add(rect2)
 }
