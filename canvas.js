@@ -1,7 +1,19 @@
 import Konva from 'konva'
 import { createCrossLayer } from './lib/CrossLayer'
-import { createCyanSquare } from './lib/CyanSquare'
+import { createSpawner, createEgg } from './lib/Spawner'
 import { createConnector } from './lib/Connector'
+
+const spawnerData = {
+  core: {
+    id: 'sp001',
+    pos: { x: 400, y: 200 },
+  },
+  eggList: [
+    { id: 'eg001', pos: { x: 150, y: 100 } },
+    { id: 'eg002', pos: { x: 180, y: 160 } },
+    { id: 'eg003', pos: { x: 120, y: 300 } },
+  ],
+}
 
 export function draw() {
   const stage = new Konva.Stage({
@@ -14,21 +26,26 @@ export function draw() {
   const crossLayer = createCrossLayer()
   stage.add(crossLayer)
 
-  const layer = new Konva.Layer()
+  const layer = drawSpawnerLayer(spawnerData)
   stage.add(layer)
+}
 
-  const rect1 = createCyanSquare({ id: 'r01', x: 40, y: 40 })
-  layer.add(rect1)
+function drawSpawnerLayer(spawnerData) {
+  const { core, eggList } = spawnerData
+  const layer = new Konva.Layer()
 
-  const rect2 = createCyanSquare({ id: 'r02', x: 250, y: 120 })
-  layer.add(rect2)
+  const spawner = createSpawner(core, {
+    onSpawn: (eggObj) => {
+      layer.add(createEgg(eggObj))
+      layer.add(createConnector(layer, eggObj.id, core.id))
+    },
+  })
+  layer.add(spawner)
 
-  const rect3 = createCyanSquare({ id: 'r03', x: 450, y: 20 })
-  layer.add(rect3)
+  for (const eggObj of eggList) {
+    layer.add(createEgg(eggObj))
+    layer.add(createConnector(layer, eggObj.id, core.id))
+  }
 
-  const connector1 = createConnector(stage, rect1.id(), rect2.id())
-  layer.add(connector1)
-
-  const connector2 = createConnector(stage, rect2.id(), rect3.id())
-  layer.add(connector2)
+  return layer
 }
