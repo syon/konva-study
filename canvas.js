@@ -17,18 +17,18 @@ export function draw() {
   const layer = new Konva.Layer()
   stage.add(layer)
 
-  const rect1 = createCyanSquare({ x: 40, y: 40 })
+  const rect1 = createCyanSquare({ id: 'r01', x: 40, y: 40 })
   layer.add(rect1)
 
-  const rect2 = createCyanSquare({ x: 250, y: 120 })
+  const rect2 = createCyanSquare({ id: 'r02', x: 250, y: 120 })
   layer.add(rect2)
 
-  const rect3 = createCyanSquare({ x: 450, y: 20 })
+  const rect3 = createCyanSquare({ id: 'r03', x: 450, y: 20 })
   layer.add(rect3)
 
-  const connector1 = createConnector(rect1, rect2)
+  const connector1 = createConnector(stage, rect1.id(), rect2.id())
   layer.add(connector1)
 
-  const connector2 = createConnector(rect2, rect3)
+  const connector2 = createConnector(stage, rect2.id(), rect3.id())
   layer.add(connector2)
 }
