@@ -1,17 +1,30 @@
-import { Stage, Layer, Text, Circle } from "react-konva";
+import { Stage, Layer, Text } from "react-konva";
+import { useRecoilState, useRecoilValue } from "recoil";
+import Trunk from "./Trunk";
+import Bubble from "./Bubble";
+import Seasons from "./Seasons";
+import { $bubble } from "../store/bubble";
 
 const StageComponent = () => {
-  const circles = [...Array(5)].map((_, i) => {
-    return (
-      <Circle key={i} x={(i + 1) * 30} y={50} radius={10} fill="magenta" />
-    );
+  const [list, setList] = useRecoilState($bubble.state.list);
+  const countText = useRecoilValue($bubble.getter.countText);
+
+  const bubbleNodes = list.map((o) => {
+    return <Bubble key={o.id} x={o.x} y={o.y} r={o.r} o={o.o} />;
   });
+
+  const onClick = () => {
+    const one = $bubble.helper.create();
+    setList([...list, one]);
+  };
 
   return (
     <Stage width={window.innerWidth} height={window.innerHeight}>
       <Layer>
-        {circles}
-        <Text x={20} y={15} text="Hello!" />
+        {bubbleNodes}
+        <Text x={10} y={10} text={countText} />
+        <Seasons />
+        <Trunk onClick={onClick} />
       </Layer>
     </Stage>
   );
