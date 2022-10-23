@@ -1,21 +1,22 @@
 {
   "name": "konva-study",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "konva": "^8.3.13"
+    "konva": "^8.3.13",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-konva": "^18.2.3"
   },
   "devDependencies": {
-    "vite": "^3.1.4"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
+    "eslint": "8.26.0",
+    "eslint-config-next": "12.3.1"
   }
 }
